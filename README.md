@@ -18,14 +18,14 @@ and you're ready to go!
 
 # Directory Structure
 
-    puppet/                   - files used for [Puppet](https://puppetlabs.com/), a system configuration management application
+    puppet/                   - files used for Puppet (https://puppetlabs.com/), a system configuration management application
      modules/                 - Puppet modules made by us
      vendor_modules/          - Puppet modules made by other people
      angular-momentum.pp      - the Puppet configuration file
     src/                      - the source files for this application
     build/                    - all of the files in src/ get compiled into here.
-    Gemfile                   - the Gemfile used by [Bundler](http://gembundler.com/)
+    Gemfile                   - the Gemfile used by Bundler (http://gembundler.com/)
     Gemfile.lock              - used by Bundler to lock in the gem versions
-    package.json              - a description of this [NodeJS](see http://package.json.nodejitsu.com/) application
+    package.json              - a description of this NodeJS application (see http://package.json.nodejitsu.com/)
     README.md                 - this readme file
-    Vagrantfile               - the configuration file for [Vagrant](http://www.vagrantup.com/)
+    Vagrantfile               - the configuration file for Vagrant (http://www.vagrantup.com/)
