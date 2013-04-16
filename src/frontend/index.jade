@@ -1,0 +1,29 @@
+html
+  head
+    link(href='/lib/bootstrap/css/bootstrap.css', rel='stylesheet')
+    link(href='/lib/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+    script(src='/lib/jquery-1.9.1.js') 
+    script(src='/lib/bootstrap/js/bootstrap.js') 
+
+    script(src='/js/app.js', type='text/javascript')
+  body
+    .container
+      .row
+        h1 Angular Momentum Lesson 1
+        p This simple app posts messages on a public board anonymously.
+        h2 Explanation:
+        p GET gets a message from the server given an id. Ignores the message field.
+        p POST creates a new message on the server. Ignores the id field.
+        p PUT updates a message on the server given the id and the new message.
+        p DELETE deletes a message on the server given the id. Ignores the message field.
+      .row
+        form#sample-form
+          label ID
+          input(type='text', name='id', id='id')
+          label Message
+          textarea(placeholder='Put your message here.', name='message', id='message')
+          .form-actions
+            button.btn#get-button GET
+            button.btn#post-button POST
+            button.btn#put-button PUT
+            button.btn#delete-button DELETE
