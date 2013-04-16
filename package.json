@@ -1,0 +1,36 @@
+{
+  "name": "angular-momentum",
+  "version": "0.0.1",
+  "author": "Angular Momentum team",
+  "description": "The start-up code for the MIT AITI Philippines 2013 class.",
+  "contributors": [
+    {
+      "name": "Kevin Charles Atienza",
+      "email": "kevin.charles.atienza@gmail.com"
+    },
+    {
+      "name": "Tim Joseph Dumol",
+      "email": "tim@timdumol.com"
+    },
+    {
+      "name": "Payton Robin Yao",
+      "email": "payton.yao@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kalibrr/angular-momentum"
+  },
+  "keywords": [
+    "rethinkdb",
+    "angular",
+    "express"
+  ],
+  "dependencies": {
+    "express": "3.2.x",
+    "rethinkdb": "1.4.x"
+  },
+  "engines": {
+    "node": ">=0.10"
+  }
+}
