@@ -1,0 +1,2 @@
+# This exists to ensure that the modules/ directory exists, since Git cannot
+# commit empty directories (any other filename would have sufficed).

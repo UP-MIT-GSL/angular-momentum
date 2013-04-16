@@ -1,4 +1,6 @@
-class {'apt': }
+class {'apt': 
+  always_apt_update => true
+}
 
 include nodejs
 
