@@ -28,7 +28,8 @@
   ],
   "dependencies": {
     "express": "3.2.x",
-    "rethinkdb": "1.4.x"
+    "rethinkdb": "1.4.x",
+    "passport": "~0.1.16"
   },
   "engines": {
     "node": ">=0.10"
