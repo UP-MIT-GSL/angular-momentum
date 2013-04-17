@@ -17,5 +17,10 @@ group :development do
   gem 'terminal-notifier-guard', :require => false
   gem 'libnotify', :require => false
 
+  gem 'stylus'
+
   gem 'guard-coffeescript'
+  gem 'guard-helpers', '~> 0.0.2'
+  gem 'guard-stylus', '~> 0.0.1'
+  gem 'guard-jade', '~> 0.1.1'
 end

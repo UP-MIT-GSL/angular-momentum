@@ -10,3 +10,11 @@ guard 'coffeescript', :output => 'build', :all_on_start => true, :error_to_js =>
   # src/
   watch(%r{^src/(.+\.coffee$)})
 end
+
+guard 'stylus', :output => 'build', :all_on_start => true, :all_after_change => true, :exclude => %r{.+/_[^/]+\.styl$} do
+  watch(%r{^src/(.+\.styl$)})
+end
+
+guard 'jade', :output => 'build', :all_on_start => true do
+  watch(%r{^src/(.+\.jade$)})
+end
