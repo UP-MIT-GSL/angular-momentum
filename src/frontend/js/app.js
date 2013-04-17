@@ -5,10 +5,12 @@ $(document).ready(function(){
       var message = parsedResponse[id];
       var messageBox = $("<div class='row'>\
                             <div class='span1 id'>\
-                              ID: <p>" + id + "</p>\
+                              <strong>ID</strong>\
+                              <p>" + id + "</p>\
                             </div>\
                             <div class='span3 message'>\
-                              Message: <p></p>\
+                              <strong>Message</strong>\
+                              <p></p>\
                             </div>\
                           </div>\
                         ");
