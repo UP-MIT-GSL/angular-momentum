@@ -31,6 +31,10 @@
     }
   });
 
+  app.get('/api/messages/', function(request, response, next) {
+    return response.send(JSON.stringify(database));
+  });
+
   app.post('/api/messages', function(request, response, next) {
     var message;
 
