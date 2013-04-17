@@ -1,10 +1,18 @@
 html
   head
+    title Angular Momentum
+
+    // import the bootstrap stylesheets
     link(href='/lib/bootstrap/css/bootstrap.css', rel='stylesheet')
     link(href='/lib/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
-    script(src='/lib/jquery-1.9.1.js') 
-    script(src='/lib/bootstrap/js/bootstrap.js') 
 
+    // import the css styles we created in the /css/ folder
+
+    // import the jquery and bootstrap JS libraries
+    script(src='/lib/jquery-1.9.1.js') 
+    script(src='/lib/bootstrap/js/bootstrap.js')
+
+    // import the javascript code we created in the /js/ folder
     script(src='/js/message.js', type='text/javascript')
   body
     .container
@@ -16,6 +24,7 @@ html
         p POST creates a new message on the server. Ignores the id field.
         p PUT updates a message on the server given the id and the new message.
         p DELETE deletes a message on the server given the id. Ignores the message field.
+        a(href="/index.html") Click here to go back to the main page
       .row
         form#sample-form
           label ID
