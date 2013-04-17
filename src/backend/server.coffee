@@ -26,6 +26,12 @@ app.get '/api/messages/:id', (request, response, next) ->
   else
     next new Error('Message does not exist')
 
+# Function that maps to HTTP GET requests
+# Example: accessing localhost:8080/api/messages/
+# Used in RESTful services to get objects
+app.get '/api/messages/', (request, response, next) ->
+  response.send JSON.stringify(database)
+
 # Function that maps to HTTP POST requests
 # Example: submitting forms with method POST to localhost:8080/api/messages/
 # Used in RESTful services to create new objects
