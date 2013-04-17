@@ -1,1 +1,37 @@
-<html><head><link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/><link href="/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/><script src="/lib/jquery-1.9.1.js"> </script><script src="/lib/bootstrap/js/bootstrap.js"> </script><script src="/js/app.js" type="text/javascript"></script></head><body><div class="container"><div class="row"><h1>Angular Momentum Lesson 1</h1><p>This simple app posts messages on a public board anonymously.</p><h2>Explanation:</h2><p>GET gets a message from the server given an id. Ignores the message field.</p><p>POST creates a new message on the server. Ignores the id field.</p><p>PUT updates a message on the server given the id and the new message.</p><p>DELETE deletes a message on the server given the id. Ignores the message field.</p></div><div class="row"><form id="sample-form"><label>ID</label><input type="text" name="id" id="id"/><label>Message</label><textarea placeholder="Put your message here." name="message" id="message"></textarea><div class="form-actions"><button id="get-button" class="btn">GET</button><button id="post-button" class="btn">POST</button><button id="put-button" class="btn">PUT</button><button id="delete-button" class="btn">DELETE</button></div></form></div></div></body></html>
+
+<html>
+  <head>
+    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <script src="/lib/jquery-1.9.1.js"> </script>
+    <script src="/lib/bootstrap/js/bootstrap.js"> </script>
+    <script src="/js/app.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>Angular Momentum Lesson 1</h1>
+        <p>This simple app posts messages on a public board anonymously.</p>
+        <h2>Explanation:</h2>
+        <p>GET gets a message from the server given an id. Ignores the message field.</p>
+        <p>POST creates a new message on the server. Ignores the id field.</p>
+        <p>PUT updates a message on the server given the id and the new message.</p>
+        <p>DELETE deletes a message on the server given the id. Ignores the message field.</p>
+      </div>
+      <div class="row">
+        <form id="sample-form">
+          <label>ID</label>
+          <input type="text" name="id" id="id"/>
+          <label>Message</label>
+          <textarea placeholder="Put your message here." name="message" id="message"></textarea>
+          <div class="form-actions">
+            <button id="get-button" class="btn">GET</button>
+            <button id="post-button" class="btn">POST</button>
+            <button id="put-button" class="btn">PUT</button>
+            <button id="delete-button" class="btn">DELETE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
