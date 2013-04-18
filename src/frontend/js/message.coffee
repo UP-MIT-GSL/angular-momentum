@@ -35,7 +35,9 @@ $(document).ready ->
 
 
   $("#put-button").bind "click", (e) ->
-    # jQuery has no helper function for PUT requests.
+    # jQuery has no helper function for PUT requests, so
+    # we use the less convenient but more general $.ajax
+    # function
     $.ajax(
       url: "/api/messages/#{getID()}"
       type: "PUT"
