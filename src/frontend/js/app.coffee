@@ -9,17 +9,16 @@ $(document).ready ->
     for id, message of parsedResponse
       # For each message, we construct a new element
       # containing that message ...
-      messageBox = $("
-        <div class='row'>
-          <div class='span1 id'>
-            <strong>ID</strong>
-            <p>#{id}</p>
-          </div>
-          <div class='span3 message'>
-            <strong>Message</strong>
-            <p></p>
-          </div>
-        </div>
+      messageBox = $("<div class='row'>
+                        <div class='span1 id'>
+                          <strong>ID</strong>
+                          <p>#{id}</p>
+                        </div>
+                        <div class='span3 message'>
+                          <strong>Message</strong>
+                          <p></p>
+                        </div>
+                      </div>
       ")
       messageBox.find(".message p").text message
 
