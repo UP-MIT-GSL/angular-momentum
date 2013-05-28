@@ -4,6 +4,13 @@
 # This just tells Guard to ignore a bunch of common temporary file formats
 ignore %r{.nfs\h+}, %r{.swp$}, %r{~$}
 
+guard 'copy', :exclude => %r{^src/.+\.(coffee|less|jade)$}, :optimize_images => true,
+    :all_on_start => true, :force => true, :output => 'build' do
+  
+  watch(%r{^src/(.+)$})
+  
+end
+
 # This configures the CoffeeScript compiler (https://github.com/guard/guard-coffeescript)
 guard 'coffeescript', :output => 'build', :all_on_start => true, :error_to_js => true do
   # This tells it to watch and compile all changes to CoffeeScript files in
