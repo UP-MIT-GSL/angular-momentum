@@ -1,16 +1,16 @@
-getID = ->
+@getID = ->
   $(".active .id").val()
 
-getMessage = ->
+@getMessage = ->
   $(".active .message").val()
 
-setID = (value) ->
+@setID = (value) ->
   $(".active .id").val value
 
-setMessage = (value) ->
+@setMessage = (value) ->
   $(".active .message").val value
 
-select = (tab) ->
+@select = (tab) ->
   # update the nav bar and the displayed tab
   $(".tab-pane").removeClass "active"
   $("##{tab}-pane").addClass "active"
