@@ -5,6 +5,13 @@
 ignore %r{.nfs\h+}, %r{.swp$}, %r{~$}
 
 # This configures the CoffeeScript compiler (https://github.com/guard/guard-coffeescript)
+guard 'copy', :exclude => %r{^src/.+\.(coffee|less|jade)$}, :optimize_images => true,
+    :all_on_start => true, :force => true, :output => 'build' do
+  #directly copies non jade/less/coffee files to build/
+  watch(%r{^src/(.+)$})
+  
+end
+
 guard 'coffeescript', :output => 'build', :all_on_start => true, :error_to_js => true do
   # This tells it to watch and compile all changes to CoffeeScript files in
   # src/
