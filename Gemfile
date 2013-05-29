@@ -19,7 +19,7 @@ group :development do
 
   gem 'stylus'
 
-  gem 'guard-coffeescript'
+  gem 'guard-coffeescript', '~> 1.2.1'
   gem 'guard-helpers', '~> 0.0.3'
   gem 'guard-stylus', '~> 0.0.2'
   gem 'guard-jade', '~> 0.1.2'
