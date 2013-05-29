@@ -18,6 +18,8 @@ guard 'coffeescript', :output => 'build', :all_on_start => true, :error_to_js =>
   watch(%r{^src/(.+\.coffee$)})
 end
 
+# We'll use the convention that .styl files whose filenames start with underscore are
+# partials and should not be compiled
 guard 'stylus', :output => 'build', :all_on_start => true, :all_after_change => true, :exclude => %r{.+/_[^/]+\.styl$} do
   watch(%r{^src/(.+\.styl$)})
 end
