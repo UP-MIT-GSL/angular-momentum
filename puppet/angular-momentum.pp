@@ -17,9 +17,26 @@ include nodejs
 
 # This defines the db class
 class db {
-  class {'rethinkdb':
-    instance_name => 'momentum',
-    rethinkdb_bind => '172.16.0.*,127.0.0.1'
+  # This creates the server with some default configurations provided by puppetlabs.
+  # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
+  # if you want to know more about postgres configuration through puppet.
+  include postgresql::server
+
+  # This creates the postgres database we'll use for angular-momentum.
+  # The user who owns the database is also created.
+  # There are more advanced options in the link provided above,
+  # but this is the most common use-case.
+  postgresql::db { 'angular_momentum_db':
+    user => 'momentum',
+    password => 'momentum-password'
+  }
+  postgresql::pg_hba_rule { 'postgres-password-login':
+    description => "Allow postgres users to login with the password.",
+    type => 'local',
+    database => 'all',
+    user => 'all',
+    auth_method => 'md5',
+    order => '001'
   }
 }
 
