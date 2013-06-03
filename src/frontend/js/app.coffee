@@ -1,11 +1,26 @@
 
-momentum = angular.module("Momentum", [])
+momentum = angular.module "Momentum", [
+  "Momentum.controllers"
+]
 
-momentum.controller "MessagesController", ['$scope', '$http', ($scope, $http) ->
-  # We'll use $resource later.
-  $http.get("/api/messages/")
-  .success (response) ->
-    $scope.messages = response
-  .error (e) ->
-    alert "Something went wrong."
+momentum.config ["$routeProvider", ($routeProvider) ->
+
+  $routeProvider.when "/home",
+    templateUrl: "/html/messages.html"
+    controller: 'MessagesController'
+
+  $routeProvider.when "/message",
+    templateUrl: "/html/message.html"
+    controller: 'MessageController'
+  
+  $routeProvider.when "/404",
+    templateUrl: "/html/404.html"
+
+  $routeProvider.when "/",
+    redirectTo: "/home"
+
+  $routeProvider.when "",
+    redirectTo: "/home"
+  
+  $routeProvider.otherwise redirectTo: "/404"
 ]

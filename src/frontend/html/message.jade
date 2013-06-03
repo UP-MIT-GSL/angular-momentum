@@ -1,85 +1,64 @@
-html
-  head
-    title Angular Momentum
+div
+    a(href="/#/") Click here to go back to the main page
+  .row
+    .tabbable
+      h3 Forms
+      ul.nav.nav-tabs
+        li.active#get-nav
+          a(ng-click="select('get')") GET Form
+        li#post-nav
+          a(ng-click="select('post')") POST Form
+        li#put-nav
+          a(ng-click="select('put')") PUT Form
+        li#delete-nav
+          a(ng-click="select('delete')") DELETE Form
 
-    // import the bootstrap stylesheets
-    link(href='/lib/bootstrap/css/bootstrap.css', rel='stylesheet')
-    link(href='/lib/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
+      .tab-content
+        .tab-pane.active#get-pane
+          p 
+            strong Explanation:
+            |  GET gets a message from the server given an id.
+          form.sample-form#get-form(ng-submit="submitGet()")
+            label ID
+            input.id(ng-model='id', type='text', name='id', value="1")
+            label Message
+            textarea.message(ng-model='message', disabled, placeholder='Message goes here...', name='message')
+            div
+              button.btn#get-button Retrieve Message
 
-    // import the css styles we created in the /css/ folder
-    link(href='/css/styles.css', rel='stylesheet')
+          
+        .tab-pane#post-pane
+          p 
+            strong Explanation:
+            |  POST creates a new message on the server. The id of the new message will be displayed afterwards.
+          form.sample-form#post-form(ng-submit="submitPost()")
+            label ID
+            input.id(ng-model='id', disabled, type='text', name='id')
+            label Message
+            textarea.message(ng-model='message', placeholder='Put your message here.', name='message')
+            div
+              button.btn#post-button Create Message
 
-    // import the jquery and bootstrap JS libraries
-    script(src='/lib/jquery-1.9.1.js') 
-    script(src='/lib/bootstrap/js/bootstrap.js')
+          
+        .tab-pane#put-pane
+          p 
+            strong Explanation:
+            |  PUT updates a message on the server given the id and the new message.
+          form.sample-form#put-form(ng-submit="submitPut()")
+            label ID
+            input.id(ng-model='id', type='text', name='id')
+            label Message
+            textarea.message(ng-model='message', placeholder='Put your message here.', name='message')
+            div
+              button.btn#put-button Update Message
 
-    // import the javascript code we created in the /js/ folder
-    script(src='/js/message.js', type='text/javascript')
-  body
-    .container
-      .row
-        h1 Angular Momentum Lesson 1
-        p.lead This simple app posts messages on a public board anonymously.
-        a(href="/index.html") Click here to go back to the main page
-      .row
-        .tabbable
-          h3 Forms
-          ul.nav.nav-tabs
-            li.active#get-nav
-              a(href="javascript:select('get')") GET Form
-            li#post-nav
-              a(href="javascript:select('post')") POST Form
-            li#put-nav
-              a(href="javascript:select('put')") PUT Form
-            li#delete-nav
-              a(href="javascript:select('delete')") DELETE Form
-
-          .tab-content
-            .tab-pane.active#get-pane
-              p 
-                strong Explanation:
-                |  GET gets a message from the server given an id.
-              form.sample-form#get-form
-                label ID
-                input.id(type='text', name='id', value="1")
-                label Message
-                textarea.message(disabled, placeholder='Message goes here...', name='message')
-                div
-                  button.btn#get-button Retrieve Message
-
-              
-            .tab-pane#post-pane
-              p 
-                strong Explanation:
-                |  POST creates a new message on the server. The id of the new message will be displayed afterwards.
-              form.sample-form#post-form
-                label ID
-                input.id(disabled, type='text', name='id')
-                label Message
-                textarea.message(placeholder='Put your message here.', name='message')
-                div
-                  button.btn#post-button Create Message
-
-              
-            .tab-pane#put-pane
-              p 
-                strong Explanation:
-                |  PUT updates a message on the server given the id and the new message.
-              form.sample-form#put-form
-                label ID
-                input.id(type='text', name='id')
-                label Message
-                textarea.message(placeholder='Put your message here.', name='message')
-                div
-                  button.btn#put-button Update Message
-
-              
-            .tab-pane#delete-pane
-              p 
-                strong Explanation:
-                |  DELETE deletes a message on the server given the id.
-              form.sample-form#delete-form
-                label ID
-                input.id(type='text', name='id')
-                div
-                  button.btn#delete-button Delete Message
+          
+        .tab-pane#delete-pane
+          p 
+            strong Explanation:
+            |  DELETE deletes a message on the server given the id.
+          form.sample-form#delete-form(ng-submit="submitDelete()")
+            label ID
+            input.id(ng-model='id', type='text', name='id')
+            div
+              button.btn#delete-button Delete Message

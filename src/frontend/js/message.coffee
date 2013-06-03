@@ -1,67 +1,56 @@
-window.getID = ->
-  $(".active .id").val()
 
-window.getMessage = ->
-  $(".active .message").val()
+momentum = angular.module "Momentum.controllers", []
 
-window.setID = (value) ->
-  $(".active .id").val value
+momentum.controller "MessagesController", ['$scope', '$http', ($scope, $http) ->
+  # We'll use $resource later.
+  $http.get("/api/messages/")
+  .success (response) ->
+    $scope.messages = response
+  .error (e) ->
+    alert "Something went wrong."
+]
 
-window.setMessage = (value) ->
-  $(".active .message").val value
+momentum.controller "MessageController", ['$scope', '$http', ($scope, $http) ->
 
-@select = (tab) ->
-  # update the nav bar and the displayed tab
-  $(".tab-pane").removeClass "active"
-  $("##{tab}-pane").addClass "active"
-  $(".nav-tabs > li").removeClass "active"
-  $("##{tab}-nav").addClass "active"
+  $scope.select = (tab) ->
+    # update the nav bar and the displayed tab
+    $(".tab-pane").removeClass "active"
+    $("##{tab}-pane").addClass "active"
+    $(".nav-tabs > li").removeClass "active"
+    $("##{tab}-nav").addClass "active"
 
-$(document).ready ->
-  $("#get-button").bind "click", (e) ->
-    $.get("/api/messages/#{getID()}", (response) ->
-      setMessage response
-    ).fail (e) ->
+  $scope.submitGet = ->
+    $http.get("/api/messages/#{$scope.id}")
+    .success (response) ->
+      $scope.message = response
+    .error (e) ->
       alert "Something went wrong. That ID may not exist."
 
 
-  $("#post-button").bind "click", (e) ->
-    $.post "/api/messages",
-      message: getMessage()
-    , (response) ->
+  $scope.submitPost = ->
+    $http.post("/api/messages",
+      message: $scope.message
+    ).success (response) ->
       # Fill id box.
-      setID response
+      $scope.id = response
       alert "Successfully made a message!"
 
 
-  $("#put-button").bind "click", (e) ->
-    # jQuery has no helper function for PUT requests, so
-    # we use the less convenient but more general $.ajax
-    # function
-    $.ajax(
-      url: "/api/messages/#{getID()}"
-      type: "PUT"
-      data:
-        message: getMessage()
-    ).done((response) ->
+  $scope.submitPut = ->
+    $http.put("/api/messages/#{$scope.id}",
+      message: $scope.message
+    ).success (response) ->
       alert "Successfully updated a message!"
-    ).fail (response) ->
+    .error (response) ->
       alert "Something went wrong."
 
 
-  $("#delete-button").bind "click", (e) ->
-    # Clear id and message boxes
-    $.ajax(
-      url: "/api/messages/#{getID()}"
-      type: "DELETE"
-    ).done((response) ->
-      setID ""
-      setMessage ""
+  $scope.submitDelete = ->
+    $http.delete("/api/messages/#{$scope.id}")
+    .success (response) ->
+      $scope.id = ""
+      $scope.message = ""
       alert "Successfully deleted a message!"
-    ).fail (response) ->
+    .error (response) ->
       alert "Something went wrong. That ID may not exist."
-
-
-  $(".sample-form").submit ->
-    # This prevents the page from refreshing when the form submits.
-    false
+]
