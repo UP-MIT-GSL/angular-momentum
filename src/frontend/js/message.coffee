@@ -12,12 +12,9 @@ momentum.controller "MessagesController", ['$scope', '$http', ($scope, $http) ->
 
 momentum.controller "MessageController", ['$scope', '$http', ($scope, $http) ->
 
+  $scope.selectedTab = 'get'
   $scope.select = (tab) ->
-    # update the nav bar and the displayed tab
-    $(".tab-pane").removeClass "active"
-    $("##{tab}-pane").addClass "active"
-    $(".nav-tabs > li").removeClass "active"
-    $("##{tab}-nav").addClass "active"
+    $scope.selectedTab = tab
 
   $scope.submitGet = ->
     $http.get("/api/messages/#{$scope.id}")

@@ -4,17 +4,17 @@ div
     .tabbable
       h3 Forms
       ul.nav.nav-tabs
-        li.active#get-nav
+        li(ng-class="{active: selectedTab == 'get'}")
           a(ng-click="select('get')") GET Form
-        li#post-nav
+        li(ng-class="{active: selectedTab == 'post'}")
           a(ng-click="select('post')") POST Form
-        li#put-nav
+        li(ng-class="{active: selectedTab == 'put'}")
           a(ng-click="select('put')") PUT Form
-        li#delete-nav
+        li(ng-class="{active: selectedTab == 'delete'}")
           a(ng-click="select('delete')") DELETE Form
 
       .tab-content
-        .tab-pane.active#get-pane
+        .tab-pane(ng-class="{active: selectedTab == 'get'}")
           p 
             strong Explanation:
             |  GET gets a message from the server given an id.
@@ -27,7 +27,7 @@ div
               button.btn#get-button Retrieve Message
 
           
-        .tab-pane#post-pane
+        .tab-pane(ng-class="{active: selectedTab == 'post'}")
           p 
             strong Explanation:
             |  POST creates a new message on the server. The id of the new message will be displayed afterwards.
@@ -40,7 +40,7 @@ div
               button.btn#post-button Create Message
 
           
-        .tab-pane#put-pane
+        .tab-pane(ng-class="{active: selectedTab == 'put'}")
           p 
             strong Explanation:
             |  PUT updates a message on the server given the id and the new message.
@@ -53,7 +53,7 @@ div
               button.btn#put-button Update Message
 
           
-        .tab-pane#delete-pane
+        .tab-pane(ng-class="{active: selectedTab == 'delete'}")
           p 
             strong Explanation:
             |  DELETE deletes a message on the server given the id.
