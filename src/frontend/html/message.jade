@@ -1,64 +1,50 @@
 div
     a(href="/#/") Click here to go back to the main page
   .row
-    .tabbable
-      h3 Forms
-      ul.nav.nav-tabs
-        li(ng-class="{active: selectedTab == 'get'}")
-          a(ng-click="select('get')") GET Form
-        li(ng-class="{active: selectedTab == 'post'}")
-          a(ng-click="select('post')") POST Form
-        li(ng-class="{active: selectedTab == 'put'}")
-          a(ng-click="select('put')") PUT Form
-        li(ng-class="{active: selectedTab == 'delete'}")
-          a(ng-click="select('delete')") DELETE Form
-
-      .tab-content
-        .tab-pane(ng-class="{active: selectedTab == 'get'}")
-          p 
-            strong Explanation:
-            |  GET gets a message from the server given an id.
-          form.sample-form#get-form(ng-submit="submitGet()")
-            label ID
-            input.id(ng-model='id', type='text', name='id', value="1")
-            label Message
-            textarea.message(ng-model='message', disabled, placeholder='Message goes here...', name='message')
-            div
-              button.btn#get-button Retrieve Message
-
-          
-        .tab-pane(ng-class="{active: selectedTab == 'post'}")
-          p 
-            strong Explanation:
-            |  POST creates a new message on the server. The id of the new message will be displayed afterwards.
-          form.sample-form#post-form(ng-submit="submitPost()")
-            label ID
-            input.id(ng-model='id', disabled, type='text', name='id')
-            label Message
-            textarea.message(ng-model='message', placeholder='Put your message here.', name='message')
-            div
-              button.btn#post-button Create Message
-
-          
-        .tab-pane(ng-class="{active: selectedTab == 'put'}")
-          p 
-            strong Explanation:
-            |  PUT updates a message on the server given the id and the new message.
-          form.sample-form#put-form(ng-submit="submitPut()")
-            label ID
-            input.id(ng-model='id', type='text', name='id')
-            label Message
-            textarea.message(ng-model='message', placeholder='Put your message here.', name='message')
-            div
-              button.btn#put-button Update Message
-
-          
-        .tab-pane(ng-class="{active: selectedTab == 'delete'}")
-          p 
-            strong Explanation:
-            |  DELETE deletes a message on the server given the id.
-          form.sample-form#delete-form(ng-submit="submitDelete()")
-            label ID
-            input.id(ng-model='id', type='text', name='id')
-            div
-              button.btn#delete-button Delete Message
+    h3 Forms
+    div(mm-tabs)
+      div(mm-tab="GET Form")
+        p 
+          strong Explanation:
+          |  GET gets a message from the server given an id.
+        form.sample-form#get-form(ng-submit="submitGet()")
+          label ID
+          input.id(ng-model='data.id', type='text', name='id', value="1")
+          label Message
+          textarea.message(ng-model='data.message', disabled, placeholder='Message goes here...', name='message')
+          div
+            button.btn#get-button Retrieve Message
+        
+      div(mm-tab="POST Form")
+        p 
+          strong Explanation:
+          |  POST creates a new message on the server. The id of the new message will be displayed afterwards.
+        form.sample-form#post-form(ng-submit="submitPost()")
+          label ID
+          input.id(ng-model='data.id', disabled, type='text', name='id')
+          label Message
+          textarea.message(ng-model='data.message', placeholder='Put your message here.', name='message')
+          div
+            button.btn#post-button Create Message
+        
+      div(mm-tab="PUT Form")
+        p 
+          strong Explanation:
+          |  PUT updates a message on the server given the id and the new message.
+        form.sample-form#put-form(ng-submit="submitPut()")
+          label ID
+          input.id(ng-model='data.id', type='text', name='id')
+          label Message
+          textarea.message(ng-model='data.message', placeholder='Put your message here.', name='message')
+          div
+            button.btn#put-button Update Message
+        
+      div(mm-tab="DELETE Form")
+        p 
+          strong Explanation:
+          |  DELETE deletes a message on the server given the id.
+        form.sample-form#delete-form(ng-submit="submitDelete()")
+          label ID
+          input.id(ng-model='data.id', type='text', name='id')
+          div
+            button.btn#delete-button Delete Message

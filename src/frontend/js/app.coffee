@@ -1,6 +1,7 @@
 
 momentum = angular.module "Momentum", [
   "Momentum.controllers"
+  "Momentum.directives"
 ]
 
 momentum.config ["$routeProvider", ($routeProvider) ->
