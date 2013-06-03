@@ -15,9 +15,8 @@ class {'apt':
 # but you cannot supply parameters to include.
 include nodejs
 
-# This defines the db class
-class db {
-  # This creates the server with some default configurations provided by puppetlabs.
+class database {
+  # This sets up postgres using puppetlab's postgresql module.
   # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
   # if you want to know more about postgres configuration through puppet.
   include postgresql::server
@@ -40,5 +39,34 @@ class db {
   }
 }
 
+class webserver {
+  # This sets up nginx as a webserver using puppetlabs's nginx module.
+  # You can visit http://forge.puppetlabs.com/puppetlabs/nginx
+  # if you want to know more.
+  include nginx
+
+  # This tells nginx that the backend server for momentum is at localhost:8080
+  nginx::resource::upstream { 'momentum-backend':
+    members => [
+      'localhost:8080'
+    ]
+  }
+
+  nginx::resource::vhost { 'momentum-frontend':
+    www_root => '/var/www/angular-momentum/build/frontend/'
+  }
+  
+  nginx::resource::location { 'momentum-proxy':
+    vhost => 'momentum-frontend',
+    proxy => 'http://momentum-backend',
+    location => '~ ^/api(/.*)?$',
+    location_cfg_prepend => {
+      'rewrite' => '^/api/?(.*)$ /$1 break'
+    }
+  }
+
+}
+
 # This declares a dependency on the above defined db class
-class {'db':}
+class {'database':}
+class {'webserver':}
