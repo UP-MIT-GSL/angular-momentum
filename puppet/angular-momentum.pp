@@ -20,6 +20,9 @@ class database {
   # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
   # if you want to know more about postgres configuration through puppet.
   include postgresql::server
+  package { 'postgresql-server-dev-9.1':
+    ensure => present
+  }
 
   # This creates the postgres database we'll use for angular-momentum.
   # The user who owns the database is also created.
