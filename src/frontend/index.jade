@@ -1,4 +1,4 @@
-html
+html(ng-app="Momentum")
   head
     title Angular Momentum
 
@@ -9,18 +9,19 @@ html
     // import the css styles we created in the /css/ folder
     link(href='/css/styles.css', rel='stylesheet')
 
-    // import the jquery and bootstrap JS libraries
+    // import the jquery, bootstrap, and Angular JS libraries
     script(src='/lib/jquery-1.9.1.js') 
     script(src='/lib/bootstrap/js/bootstrap.js')
+    script(src='/lib/angular-1.1.5/angular.js')
 
     // import the javascript code we created in the /js/ folder
     script(src='/js/app.js', type='text/javascript')
+    script(src='/js/message.js', type='text/javascript')
+    script(src='/js/directives.js', type='text/javascript')
+
   body
     .container
       .row
         h1 Angular Momentum Lesson 1
         p.lead This simple app posts messages on a public board anonymously.
-        a(href="html/message.html") Click here to edit messages
-      .row
-        h3 Messages
-        #messages
+      div(ng-view)
