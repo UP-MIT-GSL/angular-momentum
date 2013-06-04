@@ -50,6 +50,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rake (10.0.4)
     rb-fchange (0.0.6)
       ffi
     rb-fsevent (0.9.3)
@@ -83,6 +84,7 @@ DEPENDENCIES
   guard-jade (~> 0.1.2)
   guard-stylus (~> 0.0.2)
   libnotify
+  rake
   rb-fchange
   rb-fsevent
   rb-inotify (~> 0.8.8)

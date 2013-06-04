@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # This declares a dependency on Vagrant, with version approximately
 # 1.0.7
 gem 'vagrant', '~> 1.0.7'
+gem 'rake'
 
 # The following are the dependencies of Guard (https://github.com/guard/guard),
 # the build system we're using.

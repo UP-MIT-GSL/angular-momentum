@@ -2,12 +2,13 @@
 # for the Vagrant system (you can also apply this manually using
 # `puppet apply --modulepath=./modules:./vendor_modules angular-momentum.pp`).
 
-# This declares a dependency on the apt class of the apt Puppet module
-# (https://forge.puppetlabs.com/puppetlabs/apt)
-class {'apt': 
-  # This configures apt to always update when provisioning
-  always_apt_update => true
-}
+# We declare some global variables here
+$config_directory = '/vagrant/puppet/momentum-config'
+
+# This tells puppet to run `/usr/bin/apt-get update` when we provision.
+exec {'apt-update':
+  command => '/usr/bin/apt-get update'
+} -> Package <| provider == 'apt' |>
 
 # This is an alternative syntax to depend on a class (in this case, the
 # nodejs class of the nodejs module). This differs from the above syntax
@@ -67,9 +68,31 @@ class webserver {
       'rewrite' => '^/api/?(.*)$ /$1 break'
     }
   }
+}
 
+class buildtools {
+  package { 'make': } -> Package['ruby1.9.3']
+  package { 'ruby1.9.3': } -> Package['bundler']
+  package { 'bundler':
+    provider => 'gem'
+  }
+}
+
+class expressjs {
+  file { '/etc/init/expressjs.conf':
+    source => "$config_directory/init/expressjs.conf",
+    owner => 'root',
+    group => 'root'
+  }
+  class { 'buildtools': }
+  service { 'expressjs':
+    ensure => running,
+    subscribe => File['/etc/init/expressjs.conf'],
+    require => [Class['buildtools'], Package['postgresql-server'], Package['nodejs']]
+  }
 }
 
 # This declares a dependency on the above defined db class
 class {'database':}
 class {'webserver':}
+class {'expressjs':}
