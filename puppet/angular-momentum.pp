@@ -2,12 +2,13 @@
 # for the Vagrant system (you can also apply this manually using
 # `puppet apply --modulepath=./modules:./vendor_modules angular-momentum.pp`).
 
-# This declares a dependency on the apt class of the apt Puppet module
-# (https://forge.puppetlabs.com/puppetlabs/apt)
-class {'apt': 
-  # This configures apt to always update when provisioning
-  always_apt_update => true
-}
+# We declare some global variables here
+$config_directory = '/vagrant/puppet/momentum-config'
+
+# This tells puppet to run `/usr/bin/apt-get update` when we provision.
+exec {'apt-update':
+  command => '/usr/bin/apt-get update'
+} -> Package <| provider == 'apt' |>
 
 # This is an alternative syntax to depend on a class (in this case, the
 # nodejs class of the nodejs module). This differs from the above syntax
@@ -15,13 +16,83 @@ class {'apt':
 # but you cannot supply parameters to include.
 include nodejs
 
-# This defines the db class
-class db {
-  class {'rethinkdb':
-    instance_name => 'momentum',
-    rethinkdb_bind => '172.16.0.*,127.0.0.1'
+class database {
+  # This sets up postgres using puppetlab's postgresql module.
+  # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
+  # if you want to know more about postgres configuration through puppet.
+  include postgresql::server
+  package { 'postgresql-server-dev-9.1':
+    ensure => present
+  }
+
+  # This creates the postgres database we'll use for angular-momentum.
+  # The user who owns the database is also created.
+  # There are more advanced options in the link provided above,
+  # but this is the most common use-case.
+  postgresql::db { 'angular_momentum_db':
+    user => 'momentum',
+    password => 'momentum-password'
+  }
+  postgresql::pg_hba_rule { 'postgres-password-login':
+    description => "Allow postgres users to login with the password.",
+    type => 'local',
+    database => 'all',
+    user => 'all',
+    auth_method => 'md5',
+    order => '001'
+  }
+}
+
+class webserver {
+  # This sets up nginx as a webserver using puppetlabs's nginx module.
+  # You can visit http://forge.puppetlabs.com/puppetlabs/nginx
+  # if you want to know more.
+  include nginx
+
+  # This tells nginx that the backend server for momentum is at localhost:8080
+  nginx::resource::upstream { 'momentum-backend':
+    members => [
+      'localhost:8080'
+    ]
+  }
+
+  nginx::resource::vhost { 'momentum-frontend':
+    www_root => '/var/www/angular-momentum/build/frontend/'
+  }
+  
+  nginx::resource::location { 'momentum-proxy':
+    vhost => 'momentum-frontend',
+    proxy => 'http://momentum-backend',
+    location => '~ ^/api(/.*)?$',
+    location_cfg_prepend => {
+      'rewrite' => '^/api/?(.*)$ /$1 break'
+    }
+  }
+}
+
+class buildtools {
+  package { 'make': } -> Package['ruby1.9.3']
+  package { 'ruby1.9.3': } -> Package['bundler']
+  package { 'bundler':
+    provider => 'gem'
+  }
+}
+
+class expressjs {
+  file { '/etc/init/expressjs.conf':
+    source => "$config_directory/init/expressjs.conf",
+    owner => 'root',
+    group => 'root'
+  }
+  class { 'buildtools': }
+  service { 'expressjs':
+    ensure => running,
+    subscribe => File['/etc/init/expressjs.conf'],
+    require => [Class['buildtools'], Package['postgresql-server'], Package['nodejs']]
   }
 }
 
 # This declares a dependency on the above defined db class
-class {'db':}
+class {'database':}
+class {'webserver':}
+class {'expressjs':}

@@ -1,0 +1,12 @@
+div
+  a(href="/#/message") Click here to edit messages
+  .row
+    h3 Messages
+    #messages
+      .row(ng-repeat="(id, message) in messages")
+        .span1.id
+          strong ID
+          p {{id}}
+        .span3.message
+          strong Message
+          p {{message}}
