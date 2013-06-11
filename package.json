@@ -34,7 +34,9 @@
     "jade": "~0.30.0",
     "pg": "~1.1.2",
     "knex": "~0.1.4",
-    "db-migrate": "~0.5.0"
+    "db-migrate": "~0.5.0",
+    "buffer-writer": "~1.0.0",
+    "generic-pool": "~2.0.3"
   },
   "engines": {
     "node": ">=0.10"

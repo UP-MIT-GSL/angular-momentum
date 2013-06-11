@@ -29,3 +29,21 @@ and you're ready to go!
     package.json              - a description of this NodeJS application (see http://package.json.nodejitsu.com/)
     README.md                 - this readme file
     Vagrantfile               - the configuration file for Vagrant (http://www.vagrantup.com/)
+
+# Migrations
+
+When you modify your database schema, it's recommended to use a migration tool.
+For this project, we will use db-migrate for schema migration. You can opt
+to translate the generated migrations into CoffeeScript if you wish (like in
+the initial migration example).
+
+To create a migration, run:
+`db-migrate create <migrationName> -m src/backend/migrations`
+
+To use a migration:
+`db-migrate up <migrationName> -m build/backend/migrations`
+
+To rollback a migration:
+`db-migrate down <migrationName> -m build/backend/migrations`
+
+For more information, check out https://github.com/nearinfinity/node-db-migrate 
