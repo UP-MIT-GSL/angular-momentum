@@ -16,33 +16,6 @@ exec {'apt-update':
 # but you cannot supply parameters to include.
 include nodejs
 
-class database {
-  # This sets up postgres using puppetlab's postgresql module.
-  # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
-  # if you want to know more about postgres configuration through puppet.
-  include postgresql::server
-  package { 'postgresql-server-dev-9.1':
-    ensure => present
-  }
-
-  # This creates the postgres database we'll use for angular-momentum.
-  # The user who owns the database is also created.
-  # There are more advanced options in the link provided above,
-  # but this is the most common use-case.
-  postgresql::db { 'angular_momentum_db':
-    user => 'momentum',
-    password => 'momentum-password'
-  }
-  postgresql::pg_hba_rule { 'postgres-password-login':
-    description => "Allow postgres users to login with the password.",
-    type => 'local',
-    database => 'all',
-    user => 'all',
-    auth_method => 'md5',
-    order => '001'
-  }
-}
-
 class webserver {
   # This sets up nginx as a webserver using puppetlabs's nginx module.
   # You can visit http://forge.puppetlabs.com/puppetlabs/nginx
@@ -92,7 +65,51 @@ class expressjs {
   }
 }
 
+# This example shows that you can have arguments in your definitions.
+# This is useful so you only have to type constant values once.
+class database (
+  $database_name,
+  $database_user,
+  $database_password
+){
+  # This sets up postgres using puppetlab's postgresql module.
+  # Alternatively, you can visit https://forge.puppetlabs.com/puppetlabs/postgresql
+  # if you want to know more about postgres configuration through puppet.
+  include postgresql::server
+  package { 'postgresql-server-dev-9.1':
+    ensure => present
+  }
+
+  # This creates the postgres database we'll use for angular-momentum.
+  # The user who owns the database is also created.
+  # There are more advanced options in the link provided above,
+  # but this is the most common use-case.
+  postgresql::db { $database_name:
+    user => $database_user,
+    password => $database_password
+  }
+
+  nodedb { $database_name:
+    name => $database_name,
+    user => $database_user,
+    password => $database_password
+  }
+
+  postgresql::pg_hba_rule { 'postgres-password-login':
+    description => "Allow postgres users to login with the password.",
+    type => 'local',
+    database => 'all',
+    user => 'all',
+    auth_method => 'md5',
+    order => '001'
+  }
+}
+
 # This declares a dependency on the above defined db class
-class {'database':}
+class {'database':
+  database_name => 'angular_momentum_db',
+  database_user => 'momentum',
+  database_password => 'momentum-password'
+}
 class {'webserver':}
 class {'expressjs':}
