@@ -1,10 +1,10 @@
-define nodedb (
+define flaskdb (
   $name,
   $user,
   $password,
   $host        = 'localhost',
   $driver      = 'pg',
-  $path        = '/var/www/angular-momentum/database.json'
+  $path        = '/var/www/angular-momentum/backend/database.json'
 ){
   file { 'database.json':
     ensure => 'present',
@@ -12,6 +12,6 @@ define nodedb (
     owner => 'www-data',
     group => 'www-data',
     mode => '0660',
-    content => template('nodedb/database.erb')
+    content => template('flaskdb/database.erb')
   }
 }

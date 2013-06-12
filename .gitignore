@@ -1,4 +1,4 @@
 /node_modules/
 .vagrant
-database.json
+/backend/database.json
 /build/
