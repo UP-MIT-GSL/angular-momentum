@@ -1,16 +1,12 @@
 # Welcome to our simple demo server!
 import json # This is a library for encoding objects into JSON
-from flask import Flask # This the microframework library we'll use to build our backend.
+from flask import Flask, request # This the microframework library we'll use to build our backend.
+import sqlalchemy
+from models import Message
+from database import db_session, db_init
 
 app = Flask(__name__)
-
-# This dummy database only lasts while the server is running.
-# This is only for demonstration. Seriously, don't do anything like this.
-database = {
-    1: 'This is the first message!',
-    2: 'This is the second message!',
-}
-databaseLength = 2
+db_init()
 
 # Function that maps to HTTP GET requests
 # Example: accessing localhost:8080/messages/1
@@ -19,9 +15,10 @@ databaseLength = 2
 # the handlers only respond to GET
 @app.route('/messages/<int:id>/', strict_slashes=False)
 def get_message(id):
-    if id in database:
-        return database[id]
-    else:
+    try:
+        message = db_session.query(Message).filter_by(id=id).one()
+        return message.message
+    except sqlalchemy.orm.exc.NoResultFound:
         return 'Message does not exist', 404
 
 # Function that maps to HTTP GET requests
@@ -29,7 +26,9 @@ def get_message(id):
 # Used in RESTful services to get objects
 @app.route('/messages/', strict_slashes=False)
 def index_message():
-    return json.dumps(database)
+    messages = db_session.query(Message).all()
+    jsonable = [{'id': msg.id, 'message': msg.message} for msg in messages]
+    return json.dumps(jsonable)
 
 # Function that maps to HTTP POST requests
 # Example: submitting forms with method POST to localhost:8080/messages/
@@ -37,20 +36,23 @@ def index_message():
 @app.route('/messages/', methods=['POST'], strict_slashes=False)
 def post_message():
     message = request.form['message']
-    databaseLength += 1
-    database[databaseLength] = message
-    return str(databaseLength)
+    msg = Message(message=message)
+    db_session.add(msg)
+    db_session.commit()
+    return str(msg.id)
     
 # Function that maps to HTTP PUT requests
 # Example: submitting forms with method PUT to localhost:8080/messages/1
 # Used in RESTful services to update objects
 @app.route('/messages/<int:id>/', methods=['PUT'], strict_slashes=False)
 def put_message(id):
-    message = request.form['message']
-    if id in database:
-        database[id] = message
+    try:
+        message = db_session.query(Message).filter_by(id=id).one()
+        message.message = request.form['message']
+        db_session.add(message)
+        db_session.commit()
         return 'Updated the message!'
-    else:
+    except sqlalchemy.orm.exc.NoResultFound:
         return 'Message does not exist', 404
 
 # Function that maps to HTTP DELETE requests
@@ -58,10 +60,12 @@ def put_message(id):
 # Used in RESTful services to delete objects
 @app.route('/messages/<int:id>/', methods=['DELETE'], strict_slashes=False)
 def delete_message(id):
-    if id in database:
-        del database[id]
+    try:
+        message = db_session.query(Message).filter_by(id=id).one()
+        db_session.delete(message)
+        db_session.commit()
         return 'Deleted the message!'
-    else:
+    except sqlalchemy.orm.exc.NoResultFound:
         return 'Message does not exist', 404
 
 if __name__ == '__main__':

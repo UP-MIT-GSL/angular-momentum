@@ -80,12 +80,12 @@ class backend {
     owner => 'root',
     group => 'root'
   }
-  package {'python-pip':
-    ensure => present
-  }
+  #package {'python-dev': }
+  package {'python-pip': }
   service { 'flask':
     ensure => running,
     subscribe => File['/etc/init/flask.conf'],
+    #require => [Package['postgresql-server'], Package['python-pip'], Package['python-dev']]
     require => [Package['postgresql-server'], Package['python-pip']]
   }
   flaskdb { $database_name:

@@ -2,3 +2,4 @@
 .vagrant
 /backend/database.json
 /build/
+*.pyc
