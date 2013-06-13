@@ -22,11 +22,11 @@
     "url": "https://github.com/kalibrr/angular-momentum"
   },
   "keywords": [
-    "angular",
+    "angular"
   ],
   "dependencies": {
     "stylus": "~0.32.1",
-    "jade": "~0.30.0",
+    "jade": "~0.30.0"
   },
   "engines": {
     "node": ">=0.10"
