@@ -1,5 +1,7 @@
-/node_modules/
 .vagrant
 /backend/database.json
-/build/
+/backend/build/
 *.pyc
+/frontend/node_modules/
+/frontend/vendor/
+/frontend/build/
