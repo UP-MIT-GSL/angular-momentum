@@ -3,6 +3,6 @@ set -e
 BASEDIR=$(dirname $0)
 cd $BASEDIR/..
 pwd
-npm install -g
+npm install
 bundle install
 bundle exec rake
