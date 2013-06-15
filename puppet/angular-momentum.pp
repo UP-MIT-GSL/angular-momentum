@@ -15,7 +15,7 @@ class update {
   # There seems to be a problem with apt-get update without this.
   exec {'dpkg-configure':
     command => '/usr/bin/dpkg --configure -a',
-    before => 'apt-initialize'
+    before => Exec['apt-initialize']
   }
   # This defines a resource named 'apt-initialize' that tells puppet to
   # execute `/usr/bin/apt-get update`
