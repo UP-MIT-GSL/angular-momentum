@@ -23,8 +23,8 @@ but it might prove useful in the future or for debugging):
     % bundle install
     % cd frontend/
     % sudo npm install -g coffee-script
-    % vagrant up
     % npm install
+    % vagrant up
 
 and you're ready to go!
 
