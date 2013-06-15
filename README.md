@@ -21,10 +21,9 @@ installed.
 
 ## Commands to run
 
-    % # The following two commands are only needed if you plan to use Vagrant
     % sudo gem install bundler
-    % cd frontend/
     % bundle install
+    % cd frontend/
     % sudo npm install -g coffee-script
     % vagrant up
     % npm install
