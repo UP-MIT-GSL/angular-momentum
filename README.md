@@ -6,7 +6,9 @@ The start-up code for the MIT AITI Philippines 2013 class.
 
 ## Packages required
 
-Be sure to have the following packages installed:
+Be sure to have the following packages installed (these are expected
+to be installed in the host platform; NodeJS is actually optional,
+but it might prove useful in the future or for debugging):
 
 * VirtualBox (http://virtualbox.org)
 * Vagrant (http://vagrantup.com)
@@ -14,10 +16,6 @@ Be sure to have the following packages installed:
 * Ruby (http://ruby-lang.org)
 * Git (http://git-scm.com)
 * Python 2.7.5 (http://python.org)
-
-[Node](http://nodejs.org/) (≥ 0.10) installed. If you plan
-to use Vagrant, be sure to have [Ruby](http://www.ruby-lang.org/en/) (≥ 1.9)
-installed.
 
 ## Commands to run
 
