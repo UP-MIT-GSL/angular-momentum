@@ -22,7 +22,7 @@ class nginx::params {
   $nx_worker_processes   = 1
   $nx_worker_connections = 1024
   $nx_multi_accept       = off
-  $nx_sendfile           = on
+  $nx_sendfile           = off
   $nx_keepalive_timeout  = 65
   $nx_tcp_nodelay        = on
   $nx_gzip               = on
