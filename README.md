@@ -10,6 +10,7 @@ installed.
 
     % # The following two commands are only needed if you plan to use Vagrant
     % sudo gem install bundler
+    % cd frontend/
     % bundle install
     % vagrant up
     % npm install
