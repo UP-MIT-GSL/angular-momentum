@@ -12,6 +12,11 @@ $database_password = 'momentum-password'
 # when provisioning a machine. They are not applied until invoked later on.
 # (See the bottom of this file)
 class update {
+  # There seems to be a problem with apt-get update without this.
+  exec {'dpkg-configure':
+    command => '/usr/bin/dpkg --configure -a',
+    before => Exec['apt-initialize']
+  }
   # This defines a resource named 'apt-initialize' that tells puppet to
   # execute `/usr/bin/apt-get update`
   # It is run before the 'python-software-properties' resource

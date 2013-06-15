@@ -4,14 +4,28 @@ The start-up code for the MIT AITI Philippines 2013 class.
 
 # Set-up
 
-Be sure to have [Node](http://nodejs.org/) (≥ 0.10) installed. If you plan
+## Packages required
+
+Be sure to have the following packages installed:
+
+* VirtualBox (http://virtualbox.org)
+* Vagrant (http://vagrantup.com)
+* NodeJS (http://nodejs.org) >= 0.10)
+* Ruby (http://ruby-lang.org)
+* Git (http://git-scm.com)
+* Python 2.7.5 (http://python.org)
+
+[Node](http://nodejs.org/) (≥ 0.10) installed. If you plan
 to use Vagrant, be sure to have [Ruby](http://www.ruby-lang.org/en/) (≥ 1.9)
 installed.
+
+## Commands to run
 
     % # The following two commands are only needed if you plan to use Vagrant
     % sudo gem install bundler
     % cd frontend/
     % bundle install
+    % sudo npm install -g coffee-script
     % vagrant up
     % npm install
 
