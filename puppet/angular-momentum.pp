@@ -14,7 +14,7 @@ $database_password = 'momentum-password'
 class update {
   # There seems to be a problem with apt-get update without this.
   exec {'dpkg-configure':
-    command => '/usr/bin/dpkg --configure -a'
+    command => '/usr/bin/dpkg --configure -a',
     before => 'apt-initialize'
   }
   # This defines a resource named 'apt-initialize' that tells puppet to
