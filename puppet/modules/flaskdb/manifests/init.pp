@@ -13,8 +13,6 @@ define flaskdb (
   file { 'database.json':
     ensure => 'present',
     path => $path,
-    owner => 'www-data',
-    group => 'www-data',
     mode => '0660',
     content => template('flaskdb/database.erb')
   }

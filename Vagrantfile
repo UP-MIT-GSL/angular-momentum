@@ -8,7 +8,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   config.vm.customize ["modifyvm", :id, "--memory", 128]
   config.vm.share_folder "angular-momentum", "/home/vagrant/angular-momentum", ".", :nfs => true
-  config.vm.share_folder "angular-momentum-nginx", "/var/www/angular-momentum", ".", :owner => 'www-data', :group => 'www-data', :nfs => true
+  config.vm.share_folder "angular-momentum-nginx", "/var/www/angular-momentum", ".", :nfs => true
   config.vm.network :hostonly, "172.16.0.41"
   config.vm.forward_port 80, 8000
   config.vm.forward_port 8080, 8080
