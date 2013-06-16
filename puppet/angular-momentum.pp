@@ -102,8 +102,15 @@ class build inherits nodejs {
     require => Package['ruby1.9.3']
   }
 
-  exec { 'compile.sh':
-    command => '/var/www/angular-momentum/frontend/scripts/compile.sh',
+  file { '/etc/init/guard.conf':
+    source => "$config_directory/init/guard.conf",
+    owner => 'root',
+    group => 'root'
+  }
+
+  service { 'guard':
+    ensure => running,
+    subscribe => File['/etc/init/guard.conf'],
     require => [Package['bundler'], Package['nodejs']]
   }
 }
