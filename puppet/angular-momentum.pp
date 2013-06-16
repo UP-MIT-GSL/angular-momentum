@@ -104,7 +104,7 @@ class build inherits nodejs {
 
   exec { 'compile.sh':
     command => '/var/www/angular-momentum/frontend/scripts/compile.sh',
-    require => [Package['bundler'], Class['nodejs']]
+    require => [Package['bundler'], Package['nodejs']]
   }
 }
 
