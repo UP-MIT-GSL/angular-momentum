@@ -13,13 +13,13 @@ but it might prove useful in the future or for debugging):
 * VirtualBox (http://virtualbox.org)
 * Vagrant (http://vagrantup.com)
 * NodeJS (http://nodejs.org) (version >= 0.10)
-* Ruby (http://ruby-lang.org)
+* Ruby (http://ruby-lang.org) (version >= 1.9)
 * Git (http://git-scm.com)
 * Python 2.7.5 (http://python.org)
 
 ## Some notes on installing on Ubuntu
 
-You'll want a newer version of Ruby than 1.8.x. Ubuntu's repository has 1.9.3,
+You'll need a version of Ruby higher than 1.9. Ubuntu's repository has 1.9.3,
 we recommend that you use that. It also contains the gem command used earlier.
 Just run the command:
 
