@@ -75,9 +75,6 @@ After that, just run the rest of the commands below.
     % cd angular-momentum/
     % sudo gem install bundler
     % bundle install
-    % cd frontend/
-    % sudo npm install -g coffee-script
-    % npm install
     % bundle exec vagrant up
 
 and you're ready to go!
