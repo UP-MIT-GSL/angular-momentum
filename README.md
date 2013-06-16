@@ -113,6 +113,7 @@ on what those tools, libraries, and frameworks are.
 Vagrant is a tool that makes setting up and configuring virtual machines easier.
 
 Useful commands are:
+
     vagrant up                - Boots up the virtual machine and provisions it. Creates it if it doesn't exist yet.
     vagrant ssh               - ssh into the virtual machine
     vagrant provision         - Applies all the things in the puppet file.
