@@ -189,8 +189,8 @@ popups on your screen that give you error messages or success messages. Guard
 will also detect changes faster with the proper notification libraries installed.
 Without them, Guard takes about a second to notice changes in files.
 
-### Flask
-[Flask](http://flask.pocoo.org/) is a Python microframework used to build webapps.
+### [Flask](http://flask.pocoo.org/)
+Flask is a Python microframework used to build webapps.
 By default it doesn't come with much, but we've set up a database abstraction
 layer for you. You can use any library you want with pip (just add it to the
 requirements file, so your team mates will have an easy time with your changes).
@@ -234,8 +234,8 @@ the correct link.
 We strongly recommend that you learn all of these in your own time. They will
 make web development so much easier for you.
 
-### Bootstrap
-[Bootstrap](http://twitter.github.io/bootstrap/) is a collection of CSS files and
+### [Bootstrap](http://twitter.github.io/bootstrap/)
+Bootstrap is a collection of CSS files and
 JavaScript libraries that help with making your website pretty. It's recommended
 that you go through the Bootstrap tutorial on the linked site.
 
@@ -244,14 +244,14 @@ look pretty. We've found a few free themes available on http://bootswatch.com/.
 But there's surely more out there on the Internet. Just download the css and
 replace the one in ./lib/bootstrap/css/.
 
-### jQuery
-[jQuery](http://jquery.com/) is a JavaScript library that makes it infinitely
-easier to select objects in an HTML document. It also comes with lots of
-useful animations to make your website look pretty. Lastly, it comes with
-event handling tools, but we'll mainly be using AngularJS for that.
+### [jQuery](http://jquery.com/)
+jQuery is a JavaScript library that makes it infinitely easier to select objects
+in an HTML document. It also comes with lots of useful animations to make your
+website look pretty. Lastly, it comes with event handling tools, but we'll
+mainly be using AngularJS for that.
 
-### AngularJS
-[AngularJS](http://angularjs.org/) is the framework this project was named for.
+### [AngularJS](http://angularjs.org/)
+AngularJS is the framework this project was named for.
 At the most basic level, AngularJS provides an easy way to render HTML pages
 from a template and JavaScript data. This leaves the server free to forget
 absolutely everything about rendering pages, and allows us to completely
