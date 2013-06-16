@@ -1,9 +1,0 @@
-.sample-form input,
-.sample-form textarea {
-  /* Make the text boxes wide enough */
-  width: 300px;
-}
-.sample-form button {
-  /* add spacing between buttons */
-  font-weight: bold;
-}
