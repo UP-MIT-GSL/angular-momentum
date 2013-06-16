@@ -122,6 +122,29 @@ Useful commands are:
     vagrant destroy           - Destroys a virtual machine completely.
     vagrant status            - Checks to see the status of a virtual machine.
 
+### [Puppet](http://docs.puppetlabs.com/)
+"Puppet manages your servers: you describe machine configurations in an
+easy-to-read declarative language, and Puppet will bring your systems into the
+desired state and keep them there." - Puppet Labs
+
+The puppet file (./puppet/angular-momentum.pp) is where all the configurations
+are kept. It's a listing of what needs to be installed, which files go where, 
+what services need to run, and in which order.
+
+The ./puppet/momentum-configs folder is where we put all the files that need to
+be transfered into the virtual machine and used by puppet is kept. Right now, it
+contains the configuration files for the services that we run in the vm.
+
+The ./puppet/vendor_modules folder is where we keep all the modules we got from
+third parties. It mostly contains modules made by Puppet Labs themselves, but
+we've sourced some from some other open source projects.
+
+Lastly, the ./puppet/modules folder is where we keep all the modules we made
+ourselves and the modules we've modified from other people.
+
+In the likely event that you want to install more things into your virtual machine,
+we recommend that you go through the puppet documentation. It's not hard at all.
+
 ### Nginx
 Nginx is a high-performance reverse proxy and webserver. What that means is that
 as a reverse proxy, Nginx is a program takes HTTP requests and passes them to
