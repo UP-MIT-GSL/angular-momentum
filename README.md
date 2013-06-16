@@ -118,6 +118,8 @@ Useful commands are:
     vagrant ssh               - ssh into the virtual machine
     vagrant provision         - Applies all the things in the puppet file.
     vagrant halt              - Shuts down the virtual machine.
+    vagrant reload            - Restarts the virtual machine.
+    vagrant destroy           - Destroys a virtual machine completely.
     vagrant status            - Checks to see the status of a virtual machine.
 
 ### Nginx
