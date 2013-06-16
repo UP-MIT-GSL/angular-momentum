@@ -17,14 +17,68 @@ but it might prove useful in the future or for debugging):
 * Git (http://git-scm.com)
 * Python 2.7.5 (http://python.org)
 
+## Some notes on installing on Ubuntu
+
+You'll want a newer version of Ruby than 1.8.x. Ubuntu's repository has 1.9.3,
+we recommend that you use that. It also contains the gem command used earlier.
+Just run the command:
+
+    % sudo apt-get install ruby1.9.3
+
+Also, NodeJS on Ubuntu is outdated, so you will have to add a repository that
+has it. The npm command comes with the latest version of NodeJS in Chris Lea's
+repository. We don't really know that guy, but he has lots of useful repos.
+To get the latest version of NodeJS, run the commands:
+
+    % sudo apt-get install python-software-packages
+    % sudo add-apt-repository ppa:chris-lea/node.js -y
+    % sudo apt-get update
+    % sudo apt-get install nodejs
+
+After all of that, just follow the rest of the instructions listed in
+"Commands to run".
+
+## Some notes on installing on Mac
+
+Macs don't have a package manager, so we'll have to install one called homebrew.
+
+    % ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+Then we have to override the default Ruby in Mac because it's version 1.8.7.
+
+    % brew install ruby
+
+Then add the following line to your ~/.bash_profile (or create it if it doesn't
+exist). That should allow your terminal to know where Ruby things are installed.
+
+    export PATH=/usr/local/opt/ruby/bin:$PATH
+
+Note: ~/ stands for your home folder (i.e. /Users/username/), so ~/.bash_profile
+would be /Users/username/.bash_profile
+Note 2: ~/.bash_profile is the startup file that runs everytime you open a
+terminal window. In Linux, they usually use the ~/.bashrc file.
+
+Then you can either restart your terminal to refresh it or update the PATH
+variable manually by running:
+
+    PATH=/usr/local/opt/ruby/bin:$PATH
+
+Lastly, install nodejs
+
+    brew install nodejs
+
+After that, just run the rest of the commands below.
+
 ## Commands to run
 
+    % git clone git@github.com:UP-MIT-GSL/angular-momentum.git
+    % cd angular-momentum/
     % sudo gem install bundler
     % bundle install
     % cd frontend/
     % sudo npm install -g coffee-script
     % npm install
-    % vagrant up
+    % bundle exec vagrant up
 
 and you're ready to go!
 
