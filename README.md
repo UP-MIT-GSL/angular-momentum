@@ -55,6 +55,7 @@ exist). That should allow your terminal to know where Ruby things are installed.
 
 Note: ~/ stands for your home folder (i.e. /Users/username/), so ~/.bash_profile
 would be /Users/username/.bash_profile
+
 Note 2: ~/.bash_profile is the startup file that runs everytime you open a
 terminal window. In Linux, they usually use the ~/.bashrc file.
 
