@@ -109,6 +109,16 @@ found are great for building things. In this section, we'll give a rundown
 on what those tools, libraries, and frameworks are.
 
 ## Infrastructure
+### [Vagrant](http://www.vagrantup.com/)
+Vagrant is a tool that makes setting up and configuring virtual machines easier.
+
+Useful commands are:
+    vagrant up                - Boots up the virtual machine and provisions it. Creates it if it doesn't exist yet.
+    vagrant ssh               - ssh into the virtual machine
+    vagrant provision         - Applies all the things in the puppet file.
+    vagrant halt              - Shuts down the virtual machine.
+    vagrant status            - Checks to see the status of a virtual machine.
+
 ### Nginx
 Nginx is a high-performance reverse proxy and webserver. What that means is that
 as a reverse proxy, Nginx is a program takes HTTP requests and passes them to
@@ -127,8 +137,8 @@ We're using PostgreSQL, and the credentials are set up in the puppet file
 generates the ./backend/database.json file which your web app can use to get
 the database access credentials.
 
-### Guard
-[Guard](https://github.com/guard/guard) is a tool that handles file system changes.
+### [Guard](https://github.com/guard/guard)
+Guard is a tool that handles file system changes.
 We use it to watch the./frontend/src directory. When things change, it runs the
 proper plugin as configured in the Guardfile. That is, it runs guard-coffeescript
 for changes in files that end in .coffee, guard-jade for those that end in .jade,
