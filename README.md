@@ -120,7 +120,7 @@ everything that starts with /api/ onto port 8080. That means that any url
 with the location /api/xxx will end up getting served by Flask (because we set up
 Flask to listen to port 8080), and Flask will get a request with the url /xxx.
 
-### Database
+### PostgreSQL
 We're using PostgreSQL, and the credentials are set up in the puppet file
 (./puppet/angular-momentum.pp). We've set it up so that puppet automatically
 generates the ./backend/database.json file which your web app can use to get
