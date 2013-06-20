@@ -30,10 +30,15 @@ has it. The npm command comes with the latest version of NodeJS in Chris Lea's
 repository. We don't really know that guy, but he has lots of useful repos.
 To get the latest version of NodeJS, run the commands:
 
-    % sudo apt-get install python-software-packages
+    % sudo apt-get install python-software-properties
     % sudo add-apt-repository ppa:chris-lea/node.js -y
     % sudo apt-get update
     % sudo apt-get install nodejs
+
+Lastly, we need to install the package for the Network File System used by
+Vagrant to share files with the virtual machine.
+
+    % sudo apt-get install nfs-kernel-server
 
 After all of that, just follow the rest of the instructions listed under
 "General Instructions".
