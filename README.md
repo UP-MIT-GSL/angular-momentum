@@ -2,10 +2,6 @@
 
 The start-up code for the MIT AITI Philippines 2013 class.
 
-This is my repo!!!!
-
-Hello, I'm in branch 1.
-
 # Set-up
 
 ## Packages required
