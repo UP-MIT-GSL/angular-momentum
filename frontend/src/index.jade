@@ -22,6 +22,17 @@ html(ng-app="Momentum")
   body
     .container
       .row
-        h1 Angular Momentum Lesson 1
-        p.lead This simple app posts messages on a public board anonymously.
-      div(ng-view)
+        h1 Angular Momentum Lab 3
+        div Hello, world!
+        //Make the background color red and the height 50px for this div only.  Separate multiple rules with a ';'
+        div(style='background-color: red; height: 50px;')
+          | Enter something: 
+          // Create an input element with id equals 'my-input'
+          input#my-input
+        //Create a dashed border for this div only   
+        div(style='border-weight: 2px; border-color: black; border-style: dashed;')
+          button(onclick='alert(document.getElementById("my-input").value)') Click me!
+        //Create a solid border for this div only
+        div(style='border-weight: 5px; border-color: blue; border-style: solid;')
+          button(onclick='alert($("#my-input").val())') I use jQuery!
+
